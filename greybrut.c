@@ -15,9 +15,9 @@ brute = function(key,char,max)
 		md = md5(key.join(""));
 		print("trying:" + md + " [" + key.join("") + "]");
 		if md == "1769d06df18cb4c2b01931d7f83f3c9a" then exit("cracked:" + key.join("") + " in " + time);
-		perm = Algo.permute(key.join(""),[])[0];
-		
+
 		//Trying a second time with permute.
+		perm = Algo.permute(key.join(""),[])[0];		
 		md = md5(perm);
 		if md == "1769d06df18cb4c2b01931d7f83f3c9a" then exit("cracked:" + perm + " in " + time);
 		print("trying:" + md + " [" + perm + "]");
