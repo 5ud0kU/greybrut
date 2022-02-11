@@ -10,18 +10,25 @@ brute = function(key,char,max)
 	key.push(char[0]);  //empty
 	for i in range(0,char.len -1)
 		key[key.len-1] = char[i]
+		
+		//Trying a first time no permute.
+		md = md5(key.join(""));
+		print("trying:" + md + " [" + key.join("") + "]");
+		if md == "1769d06df18cb4c2b01931d7f83f3c9a" then exit("cracked:" + key.join("") + " in " + time);
 		perm = Algo.permute(key.join(""),[])[0];
+		
+		//Trying a second time with permute.
 		md = md5(perm);
-		// cracker here, manually done for the example.
-		if md == "a9c52a81dac874d70c2a9bfb9bcc4ac1" then exit("cracked:" + perm);
+		if md == "1769d06df18cb4c2b01931d7f83f3c9a" then exit("cracked:" + perm + " in " + time);
 		print("trying:" + md + " [" + perm + "]");
-		//////
+
+		
 		if not perm.len <= max then break;
 		brute([perm],char,max);
 	end for
 end function
 
-for m in range(1,16)
+for m in range(4,4)
 	for i in range(0,c.len -1)
 		brute([c[i]],c,m);
 	end for
