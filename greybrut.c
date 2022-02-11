@@ -11,7 +11,11 @@ brute = function(key,char,max)
 	for i in range(0,char.len -1)
 		key[key.len-1] = char[i]
 		perm = Algo.permute(key.join(""),[])[0];
-		print(perm);
+		md = md5(perm);
+		// cracker here, manually done for the example.
+		if md == "a9c52a81dac874d70c2a9bfb9bcc4ac1" then exit("cracked:" + perm);
+		print("trying:" + md + " [" + perm + "]");
+		//////
 		if not perm.len <= max then break;
 		brute([perm],char,max);
 	end for
